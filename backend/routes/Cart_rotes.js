@@ -38,7 +38,7 @@ router.post("/cart",async(req,res)=>{
     }
 })
 
-router.put("/updateCart/:id", async (req, res) => {
+router.put("/cartitem/updateCart/:id", async (req, res) => {
     const { id } = req.params
     const {confirm} = req.body
   

@@ -17,8 +17,8 @@ export const Adminorders = () => {
       .catch(err => console.log(err));
   }, []);
 
-  const handleConfirmOrder = (orderId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}cart/updateCart/${orderId}`, { confirm: true })
+  const handleConfirmOrders = (orderId) => {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}cart/cartitem/updateCart/${orderId}`, { confirm: true })
       .then((result) => {
         Swal.fire({
           text: "Successful",
@@ -62,7 +62,7 @@ export const Adminorders = () => {
                   <div className="order-creation-time">
                     <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
                   </div>
-                  <button className="btn btn-success"  onClick={() => handleConfirmOrder(orderItem._id)}>
+                  <button className="btn btn-success"  onClick={() => handleConfirmOrders(orderItem._id)}>
                     Confirm Order
                   </button>
                 </div>
