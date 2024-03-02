@@ -38,7 +38,23 @@ router.post("/cart",async(req,res)=>{
     }
 })
 
-
+router.put("/updateCart/:id", async (req, res) => {
+    const { id } = req.params
+    const {confirm} = req.body
+  
+    try {
+        const getCart = await CartModel.findByIdAndUpdate({_id:id},{confirm});
+      
+    if (getCart) {
+            return res.json({message:"Confirmed Order"});
+        } else {
+            return res.status(404).json({ message: "Cannot Confirm" });
+        }
+    } catch (err) {
+       
+        return res.status(500).json({ message: "Internal server error" });
+    }
+});
   
 
 

@@ -13,7 +13,6 @@ export default function Login() {
     }
   }, [])
 
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,15 +23,17 @@ export default function Login() {
   function handlelogin(e) {
     e.preventDefault()
     setLoading(true)
-    axios.post("https://online-food-website.onrender.com/Login", { email, password })
-      .then((result) => {
+    console.log("loginemail: ",email)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}Login`, { email})
+    .then((result) => {
         const userLogin = result.data;
+        console.log(userLogin)
         if (userLogin.message !== "Login Failed") {
           console.log("Login successful");
           setCookies("access_token", userLogin.token)
           window.localStorage.setItem("userInfo", JSON.stringify(userLogin.user))
           navigate('/');
-          setLoading(false)
+          window.location.reload()
         } else {
           Swal.fire({
             position: "top-end",
@@ -41,12 +42,14 @@ export default function Login() {
             showConfirmButton: false,
             timer: 1500
           });
-          setLoading(false)
         }
       })
       .catch((err) => {
-       alert("Server Error")
-      });
+       alert("Server Error" , err)
+       console.log(err)
+      }).finally(
+        setLoading(false)
+      );
   }
 
   return (
@@ -54,7 +57,6 @@ export default function Login() {
       <div className="login-form">
         <h2 className="login-title">Login</h2>
         <form onSubmit={handlelogin}>
-          <input required type="text" placeholder='name' className='form-control' value={name} onChange={(e) => setName(e.target.value)} />
           <input required type="email" placeholder='email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input required type="password" placeholder='password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
           <button className='btn btn-standard' disabled={loading} >

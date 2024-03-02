@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+
 export default function Cart() {
   const cartState = useSelector(state => state.cartReducer);
   const cartItems = cartState.cartItems;
@@ -32,7 +33,7 @@ export default function Cart() {
       if (newWallet >= 0) {
         Swal.fire({
           title: "Are you sure?",
-          text: `Total amount ${subtotal}`,
+          text: `Subtotal ${subtotal} RS`,
           icon: "warning",
           borderRadius:'50%',
           showCancelButton: true,
@@ -49,9 +50,9 @@ export default function Cart() {
 
             updateLocalStorage(newWallet);
             setLoading(true);
-
-            await axios.put(`https://online-food-website.onrender.com/UpdateUser/${userInfo._id}`, { wallet: newWallet });
-            await axios.post("https://online-food-website.onrender.com/user/cart", { ownerID, name, cartItems })
+         
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/user/${userInfo._id}`, { wallet: newWallet });
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, cartItems })
               .then((result) => {
                 navigate('/Order')
                 window.location.reload()
@@ -59,7 +60,8 @@ export default function Cart() {
               })
               .catch((err) => {
                 alert('error')
-              });
+              })
+              .finally(setLoading(false))
 
             window.localStorage.removeItem("cartItems");
           } 
@@ -69,6 +71,8 @@ export default function Cart() {
       }
     } catch (err) {
       console.log("error", err);
+    } finally{
+      
     }
   };
 

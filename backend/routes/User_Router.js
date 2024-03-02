@@ -87,7 +87,7 @@ router.get('/users/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/user/:id', async (req, res) => {
     const id = req.params.id;
     const { wallet } = req.body;
     try {

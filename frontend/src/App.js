@@ -15,6 +15,8 @@ import ReadMessage from './pages/ReadMessage/ReadMessage.js';
 import Order from './pages/orderPage/order.js';
 import {Adminorders} from './pages/AdminordersPage/Adminorders.js';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import Confirmed_orders from './pages/user_confirmed_oreders/Confirmed_orders.js';
+import Old_orders_admin from './pages/Old_Orders_admin/Old_orders_admin.js';
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
         <Route path='/Contact/:id' element={<Contact/>}></Route>  
         <Route path='/Readmessage' element={<ReadMessage/>}></Route>  
         <Route path='/Order' element={<Order/>}></Route>  
-        <Route path='/Adminorders' element={<Adminorders/>}></Route>    
+        <Route path='/Adminorders' element={<Adminorders/>}></Route>   
+        <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
+        <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>        
       </Routes>
       
      </Router>

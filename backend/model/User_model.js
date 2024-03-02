@@ -31,7 +31,8 @@ const UserSchema = new mongoose.Schema({
     }},
     {
         timestamps: true,
-    }
+    },
+    
 )
 
 export const UserModal = new mongoose.model("user",UserSchema)

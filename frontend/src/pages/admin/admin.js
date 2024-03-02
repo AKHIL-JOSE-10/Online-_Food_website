@@ -14,7 +14,7 @@ export const Admin = () => {
   };
 
   return (
-    <div className="card-container" style={{marginTop:"200px"}}>
+    <div className="card-container" style={{marginTop:"90px"}}>
       <div className="card mx-2" style={{border:'1px solid' , marginTop:'20px'}}>
         <Link to='/addFood'>
           <img className="card-img-top" src={food} alt="Card image cap" style={imageStyle} />

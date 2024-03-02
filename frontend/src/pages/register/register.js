@@ -30,7 +30,7 @@ export default function Register() {
     }
     else {
       console.log(name)
-      axios.post("https://online-food-website.onrender.com/Register", { name, email, password })
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}user/Register/UserRegister`, { name, email, password })
         .then((result) => {
           Swal.fire({
             position: "top-end",
