@@ -24,7 +24,7 @@ app.use('/stock',Food_Router)
 app.use('/Contact/user',UserRouter)
 app.use('/cart/getcart',CartRouter)
 app.use('/user',CartRouter)
-app.use('/cart',CartRouter)
+app.use('/cartitem',CartRouter)
 
 
 

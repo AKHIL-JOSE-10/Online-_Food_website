@@ -18,7 +18,7 @@ export const Adminorders = () => {
   }, []);
 
   const handleConfirmOrders = (orderId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}cart/cartitem/updateCart/${orderId}`, { confirm: true })
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { confirm: true })
       .then((result) => {
         Swal.fire({
           text: "Successful",
@@ -35,8 +35,8 @@ export const Adminorders = () => {
   return (
     <div style={{ marginTop: '90px' }}>
       {loading ? (
-        <div class="spinner-border text-success" role="status">
-          <span class="sr-only">Loading...</span>
+        <div className="spinner-border text-success" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
       ) : (
         <div className="order-container">
