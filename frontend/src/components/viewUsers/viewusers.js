@@ -7,13 +7,13 @@ export default function ViewUsers() {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        axios.get('https://online-food-website.onrender.com/GetUser')
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUser/all`)
             .then((result) => {
                 console.log(result.data);
                 const filteredList = result.data.filter(user => !user.isAdmin);
                 setList(filteredList);
             })
-            .catch((err) => console.log("error"));
+            .catch((err) => console.log(err));
     }, []);
 
     return (
