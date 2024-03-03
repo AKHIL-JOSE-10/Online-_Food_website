@@ -51,7 +51,10 @@ export default function Cart() {
             updateLocalStorage(newWallet);
             setLoading(true);
          
-            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/users/${userInfo._id}`, { wallet: newWallet });
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/users/${userInfo._id}`, { wallet: newWallet })
+            .then((result)=>{
+              
+            }).catch(err=>{alert("error")})
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, cartItems })
               .then((result) => {
                 navigate('/Order')

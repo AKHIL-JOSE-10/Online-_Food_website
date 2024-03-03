@@ -89,8 +89,8 @@ router.get('/users/:id', async (req, res) => {
 
 router.put('/users/:id', async (req, res) => {
     const id = req.params.id;
+    const { wallet } = req.body;
    
-    console.log(wallet)
     try {
         const updatedUser = await UserModal.findByIdAndUpdate({ _id: id },{wallet: wallet });
         if (updatedUser) {
