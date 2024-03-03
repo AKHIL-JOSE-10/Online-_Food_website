@@ -1,92 +1,94 @@
 
-.navbar {
-  position: fixed !important;
-  top: 0;
+.nav {
+  height: 90px;
   width: 100%;
-  background-color: #009e03;
-  border-bottom: 2px solid #00ff0d;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  height: 80px;
-  border-bottom: 4px solid #22372b;
-/* color: rgb(2, 2, 99); */
-  z-index: 1000 !important; /* Adjust the value as needed */
-}
-/* Other styles */
-
-.navbar-brand img {
-  width: 40px;
-  margin-right: 10px;
+  background-color: #484141;
+  position: fixed;
+  top: 0px;
+  z-index: 1000 !important;
 }
 
-.navbar-toggler-icon {
-  background-color: white;
+.nav > .nav-header {
+  display: inline;
+  margin-right: 900px;
 }
 
-.custom-navbar {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
 }
 
-.name-link,
-.cart-link {
-  color: rgb(16, 15, 15);
-  font-weight: bold;
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
   text-decoration: none;
-  cursor: pointer;
-  z-index: 100000;
+  color: #efefef;
 }
 
-.name-link {
-  margin-top: 15px;
-  margin-right: 10px;
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.cart-icon {
-  margin-left: 5px;
+.nav > #nav-check {
+  display: none;
 }
 
-.logo-img {
-  width: 110px !important;
-  height: 70px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-/* Additional styling for the navbar, adjust as needed */
-.navbar {
-  border-bottom: 3px solid green;
-  padding: 15px 0;
-}
-
-/* Change the background color of the active link */
-.navbar-nav .active > .nav-link {
-  background-color: #4CAF50;
-  color: white;
-}
-
-
-
-
-@media (max-width: 767px) {
-  .nav-link {
-    color: red !important;
-    font-size: 1.2rem !important;
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+   
   }
-  .nav-link cart-link{
-    color: red !important;
-    font-size: 1.2rem !important;
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
   }
- .nav-item{
-  color: red !important;
-  font-size: 1.2rem !important;
- }
- .dropdown-item{
-  color: red !important;
-  font-size: 1.2rem !important;
- }
- .dropdown{
-  color: red !important;
-  font-size: 1.2rem !important;
- }
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(50vh - 50px); /* Adjust the height as needed */
+    overflow-y: auto;
+  }
 }

@@ -16,7 +16,7 @@ export default function Footer() {
             </div>
             
             <div className="footer-info">
-              <p>Address: Jyothi Engineering College, Cheruthuruthi</p>
+              <p>Jyothi Engineering College, Cheruthuruthi</p>
               <p>Phone: 97556142747</p>
               <p>Email: Jyothi@gmail.com</p>
             </div>
