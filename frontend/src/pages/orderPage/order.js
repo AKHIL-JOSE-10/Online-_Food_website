@@ -18,44 +18,50 @@ export default function Order() {
       .catch(err => console.log(err));
   }, []);
 
-  const unconfirmedOrders = orderlist.filter(order => !order.confirm);
+  const unconfirmedOrders = orderlist.filter(order => (!order.confirm) );
+  const unconfirmed = unconfirmedOrders .filter(order => order.ownerID === userInfo._id);
 
+console.log(unconfirmedOrders)
   return (
     <div style={{ marginTop: "100px",marginBottom:"50px"}}>
      
-      {loading ? (
-        <div className="spinner-border text-success" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      ) : (
-        <div>
-          <div className='unconfirmed'>
-            <b>Waiting to confirm..</b><br />
-          </div>
+     {loading ? (
+  <div className="spinner-border text-success" role="status">
+    <span className="sr-only">Loading...</span>
+  </div>
+) : (
+  unconfirmed.length > 0 ? (
+    <div>
+      <div className='unconfirmed'>
+        <b>Waiting to confirm..</b><br />
+      </div>
 
-          {unconfirmedOrders.map((orderItem, index) => (
-            userInfo._id === orderItem.ownerID ? (
-              <div className="order-item" key={index}>
-                {orderItem.products.map((product, productIndex) => (
-                  <div className="order-item-content" key={productIndex}>
-                    <div className="order-item-name" style={{ color: 'red' }}><b>{product.name}</b></div>
-                    <div className="order-item-quantity" style={{ color: 'red' }}>Quantity : {product.quantity}</div>
-                    <div className="image-container">
-                      <img src={`${process.env.REACT_APP_BACKEND_URL}images/${product.image}`} alt="Image" />
-                    </div>
-                  </div>
-                ))}
-                <div className="order-creation-time">
-                  <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
+      {unconfirmed.map((orderItem, index) => (
+  
+          <div className="order-item" key={index}>
+            {orderItem.products.map((product, productIndex) => (
+              <div className="order-item-content" key={productIndex}>
+                <div className="order-item-name" style={{ color: 'red' }}><b>{product.name}</b></div>
+                <div className="order-item-quantity" style={{ color: 'red' }}>Quantity : {product.quantity}</div>
+                <div className="image-container">
+                  <img src={`${process.env.REACT_APP_BACKEND_URL}images/${product.image}`} alt="Image" />
                 </div>
               </div>
-            ) : null
-          ))}
-        </div>
-      )}
+            ))}
+            <div className="order-creation-time">
+              <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
+            </div>
+          </div>
+        
+      ))}
+    </div>
+  ) : (
+    <h2 style={{marginBottom:"100px",marginTop:"120px",color:"red"}}>No orders waiting for Confirmation...</h2>
+  )
+)}
        <div style={{ marginRigt: 'auto' }}>
         <a href="/Confirmed_orders">
-          <button className='btn btn-success mt-8'>confirmed Orders</button>
+          <button className='btn btn-success mt-8'>View Placed Orders..</button>
         </a>
       </div>
     </div>
