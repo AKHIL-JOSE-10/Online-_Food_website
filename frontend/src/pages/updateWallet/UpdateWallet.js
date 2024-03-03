@@ -41,7 +41,7 @@ export default function Update() {
         else{ updatedWallet = parseInt(initialWallet) - walletValue;}   
         }
     
-        axios.put(`https://online-food-website.onrender.com/UpdateUser/${id}`, { wallet: updatedWallet })
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${id}`, { wallet: updatedWallet })
             .then((response) => {
                 alert(response.data.message);
                 navigate('/Viewusers');

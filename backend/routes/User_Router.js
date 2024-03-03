@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 const router = express.Router()
 
 
-router.post('/Register',async (req, res) => {
+router.post('/user/UserRegister',async (req, res) => {
     const { name, email, password } = req.body
     const wallet=0
     let AlreadyExist = await UserModal.findOne({ email })
@@ -32,7 +32,7 @@ router.post('/Register',async (req, res) => {
 }
 )
 
-router.post('/Login', async(req,res)=>{
+router.post('/LoginUser', async(req,res)=>{
 
         const {email,password} = req.body
         let user

@@ -24,7 +24,7 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     console.log("loginemail: ",email)
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}Login`, { email})
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}Login/LoginUser`, { email})
     .then((result) => {
         const userLogin = result.data;
         console.log(userLogin)

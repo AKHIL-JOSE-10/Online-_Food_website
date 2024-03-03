@@ -13,7 +13,8 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(cors())
 
-app.use('/',UserRouter)
+app.use('/register',UserRouter)
+app.use('/wallet',UserRouter)
 app.use('/Login',UserRouter)
 app.use('/getALLFoods',Food_Router)
 app.use('/AddFoodRouter',Food_Router)

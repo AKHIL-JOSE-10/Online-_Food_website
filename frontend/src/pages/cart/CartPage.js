@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../actions/cartActions';
 import { deleteFromCart } from '../../actions/cartActions';
@@ -16,21 +16,25 @@ export default function Cart() {
   const navigate = useNavigate()
   var subtotal = cartItems.reduce((x, items) => x + items.price, 0)
   const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
-  const wallet = userInfo.wallet
-
-  const updateLocalStorage = (newWallet) => {
-    window.localStorage.setItem("userInfo", JSON.stringify({ ...userInfo, wallet: newWallet }));
-  };
 
   const [loading, setLoading] = useState(false)
+  const [NewWallet, setNewWallet] = useState('')
+
+    useEffect(() => {
+      (axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/${userInfo._id}`))
+            .then((result) => {
+                setNewWallet(result.data.wallet);
+            })
+            .catch((err) => console.log(err));
+    }, []); 
 
   const handleSubmit = async () => {
     try {
-      const newWallet = wallet - subtotal
+      const New_Wallet = NewWallet - subtotal
       const ownerID = userInfo._id
       const name = userInfo.name
 
-      if (newWallet >= 0) {
+      if (New_Wallet >= 0) {
         Swal.fire({
           title: "Are you sure?",
           text: `Subtotal ${subtotal} RS`,
@@ -44,17 +48,17 @@ export default function Cart() {
           if (result.isConfirmed) {
             Swal.fire({
               title: "Successfull",
-              text: `Balance amount on Wallet ${newWallet}`,
+              text: `Balance amount on Wallet ${New_Wallet}`,
               icon: "success"
             });
 
-            updateLocalStorage(newWallet);
             setLoading(true);
          
-            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${userInfo._id}`, { wallet: newWallet })
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${userInfo._id}`, { wallet: New_Wallet })
             .then((result)=>{
-              
+              console.log("successfully updated wallet")
             }).catch(err=>{alert("error")})
+
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, cartItems })
               .then((result) => {
                 navigate('/Order')

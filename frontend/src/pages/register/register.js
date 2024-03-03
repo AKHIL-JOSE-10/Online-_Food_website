@@ -30,7 +30,7 @@ export default function Register() {
     }
     else {
       console.log(name)
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}user/Register/UserRegister`, { name, email, password })
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}register/user/UserRegister`, { name, email, password })
         .then((result) => {
           Swal.fire({
             position: "top-end",
@@ -44,7 +44,7 @@ export default function Register() {
         })
         .catch(err => { Swal.fire({
           position: "top-end",
-          icon: "success",
+          icon: "error",
           title: "Couldn't Registered",
           showConfirmButton: false,
           timer: 3000
