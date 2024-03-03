@@ -29,7 +29,7 @@ export default function AddFoods() {
     formdata.append('price', price);
 
     try {
-      const result = await axios.post(`${process.env.BACKEND_SERVER_URL}AddFoodRouter`, formdata);
+      const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}AddFoodRouter`, formdata);
       alert(result.data.message);
       setLoading(false)
       navigate('/')
