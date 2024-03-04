@@ -7,10 +7,10 @@ import axios from 'axios';
 export default function Navbar() {
   const cartState = useSelector(state => state.cartReducer);
   const [cookies, setCookies] = useCookies(['access_token']);
-  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
   const [userInfo, setUserInfo] = useState('');
 
   useEffect(() => {
+     const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     if (user._id) {
       axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/` + user._id)
         .then((response) => {
