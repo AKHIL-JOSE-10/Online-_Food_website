@@ -9,8 +9,9 @@ export default function Navbar() {
   const [cookies, setCookies] = useCookies(['access_token']);
   const [userInfo, setUserInfo] = useState('');
 
+  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+  
   useEffect(() => {
-     const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     if (user._id) {
       axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/` + user._id)
         .then((response) => {
