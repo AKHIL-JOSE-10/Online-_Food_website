@@ -45,8 +45,8 @@ export default function Navbar() {
       </div>
 
       <div className="nav-links">
-        {userInfo.name ? (
-          userInfo.isAdmin ? (
+        {user.name ? (
+          user.isAdmin ? (
             <>
               <a  style={{ color: '#fff' }}>{userInfo.name}</a>
               <a href="/Admin" style={{ color: '#fff' }}>Task</a>
