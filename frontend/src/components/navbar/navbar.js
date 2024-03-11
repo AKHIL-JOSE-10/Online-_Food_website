@@ -7,9 +7,10 @@ import axios from 'axios';
 export default function Navbar() {
   const cartState = useSelector(state => state.cartReducer);
   const [cookies, setCookies] = useCookies(['access_token']);
-  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
   const [userInfo, setUserInfo] = useState('');
 
+  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+  
   useEffect(() => {
     if (user._id) {
       axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/` + user._id)
@@ -45,8 +46,8 @@ export default function Navbar() {
       </div>
 
       <div className="nav-links">
-        {userInfo.name ? (
-          userInfo.isAdmin ? (
+        {user.name ? (
+          user.isAdmin ? (
             <>
               <a  style={{ color: '#fff' }}>{userInfo.name}</a>
               <a href="/Admin" style={{ color: '#fff' }}>Task</a>
