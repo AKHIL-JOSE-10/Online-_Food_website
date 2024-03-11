@@ -27,8 +27,8 @@ function App() {
   const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
   useEffect(() => {
-    setLoading(true)
     if (user._id) {
+      setLoading(true)
       axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/` + user._id)
         .then((response) => {
           setUserInfo(response.data);
