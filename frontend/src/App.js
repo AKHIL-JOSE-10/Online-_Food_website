@@ -17,31 +17,67 @@ import {Adminorders} from './pages/AdminordersPage/Adminorders.js';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Confirmed_orders from './pages/user_confirmed_oreders/Confirmed_orders.js';
 import Old_orders_admin from './pages/Old_Orders_admin/Old_orders_admin.js';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+
 
 function App() {
+
+  const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+
+  useEffect(() => {
+    setLoading(true)
+    if (user._id) {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/` + user._id)
+        .then((response) => {
+          setUserInfo(response.data);
+          setLoading(false)
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
+    }
+  }, []);
+  
+  const [userInfo, setUserInfo] = useState('');
+  const [loading, setLoading] = useState(false)
+
+
+
   return (
     <div className="App">
      <Router>
-     <div className="header-container">
-          <Navbar />
-        </div>
-      <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/Cart/:id' element={<Cart/>}></Route>
-        <Route path='/Login' element={<Login/>}></Route>
-        <Route path='/Register' element={<Register/>}></Route>
-        <Route path='/Admin' element={<Admin/>}></Route>
-        <Route path='/AddFood' element={<AddFoods/>}></Route>
-        <Route path='/Viewusers' element={<Viewusers/>}></Route>
-        <Route path='/Update/:id' element={<Update/>}></Route>
-        <Route path='/Stock' element={<Stock/>}></Route>
-        <Route path='/Contact/:id' element={<Contact/>}></Route>  
-        <Route path='/Readmessage' element={<ReadMessage/>}></Route>  
-        <Route path='/Order' element={<Order/>}></Route>  
-        <Route path='/Adminorders' element={<Adminorders/>}></Route>   
-        <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
-        <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>        
-      </Routes>
+
+      {
+        loading ?   <div className="spinner-border text-success" style={{marginTop:"300px"}} role="status">
+        <span className="sr-only">Loading...</span>
+      </div> :
+      <div>
+          <div className="header-container">
+       <Navbar />
+     </div>
+   <Routes>
+     <Route path='/' element={<Home/>}></Route>
+     <Route path='/Cart/:id' element={<Cart/>}></Route>
+     <Route path='/Login' element={<Login/>}></Route>
+     <Route path='/Register' element={<Register/>}></Route>
+     <Route path='/Admin' element={<Admin/>}></Route>
+     <Route path='/AddFood' element={<AddFoods/>}></Route>
+     <Route path='/Viewusers' element={<Viewusers/>}></Route>
+     <Route path='/Update/:id' element={<Update/>}></Route>
+     <Route path='/Stock' element={<Stock/>}></Route>
+     <Route path='/Contact/:id' element={<Contact/>}></Route>  
+     <Route path='/Readmessage' element={<ReadMessage/>}></Route>  
+     <Route path='/Order' element={<Order/>}></Route>  
+     <Route path='/Adminorders' element={<Adminorders/>}></Route>   
+     <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
+     <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>        
+   </Routes>
+      </div>
+     
+      }
+    
       
      </Router>
     </div>

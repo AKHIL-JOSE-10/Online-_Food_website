@@ -6,7 +6,7 @@ export const Adminorders = () => {
   const [orderlist, setOrderlist] = useState([]);
   const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
   const [loading, setLoading] = useState(false);
-
+  const [count,setCount] = useState(0)
   useEffect(() => {
     setLoading(true);
     axios.get("https://online-food-website.onrender.com/cart/getcart/cartitems")

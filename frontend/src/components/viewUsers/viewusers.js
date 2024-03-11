@@ -9,7 +9,7 @@ export default function ViewUsers() {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUser/all`)
             .then((result) => {
-                console.log(result.data);
+          
                 const filteredList = result.data.filter(user => !user.isAdmin);
                 setList(filteredList);
             })

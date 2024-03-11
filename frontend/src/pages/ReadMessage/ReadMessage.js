@@ -1,5 +1,3 @@
-// ReadMessage.js
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ReadMessage.css'; // Ensure correct path to your CSS file
@@ -10,9 +8,8 @@ export default function ReadMessage() {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('https://online-food-website.onrender.com/GetUser')
+        axios.get('https://online-food-website.onrender.com/GetUser/all')
             .then((result) => {
-                console.log(result.data);
                 const filteredList = result.data.filter(user => !user.isAdmin);
                 setList(filteredList);
                 setLoading(false)
@@ -21,7 +18,13 @@ export default function ReadMessage() {
     }, []);
 
     return (
-        <div className="table-container read-message-container">
+        <div>
+            {
+                  loading ?   <div className="spinner-border text-success" style={{marginTop:"300px"}} role="status">
+                  <span className="sr-only">Loading...</span>
+                </div> :
+                <div>
+<div className="table-container read-message-container">
             <table className="table">
                 <thead>
                     <tr>
@@ -32,7 +35,7 @@ export default function ReadMessage() {
                 <tbody>
                     {list.map((user) => (
                         user.message ? (
-                            <tr key={user.id}>
+                            <tr key={user._id}>
                                 <td className="email-column">{user.email}</td>
                                 <td className="message-column">{user.message}</td>
                             </tr>
@@ -41,5 +44,9 @@ export default function ReadMessage() {
                 </tbody>
             </table>
         </div>
+                </div>
+            }
+        </div>
+        
     );
 }
