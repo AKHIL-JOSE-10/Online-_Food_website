@@ -17,6 +17,8 @@ import {Adminorders} from './pages/AdminordersPage/Adminorders.js';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Confirmed_orders from './pages/user_confirmed_oreders/Confirmed_orders.js';
 import Old_orders_admin from './pages/Old_Orders_admin/Old_orders_admin.js';
+import Styleheader from './pages/styleheader/Styleheader.js';
+import About from './pages/About/About.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -72,13 +74,12 @@ function App() {
      <Route path='/Order' element={<Order/>}></Route>  
      <Route path='/Adminorders' element={<Adminorders/>}></Route>   
      <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
-     <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>        
+     <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>   
+     <Route path='/Styleheader' element={<Styleheader/>}></Route>    
+     <Route path='/About' element={<About/>}></Route>                      
    </Routes>
       </div>
-     
-      }
-    
-      
+      } 
      </Router>
     </div>
   );

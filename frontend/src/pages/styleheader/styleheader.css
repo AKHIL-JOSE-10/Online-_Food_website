@@ -1,0 +1,101 @@
+section .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 80px;
+    background-color: rgb(72, 70, 70);
+}
+
+section .main .main_text h1 {
+    color: #000;
+    font-size: 75px;
+    position: relative;
+    top: -25px;
+    left: 5%;
+}
+
+section .main .main_text h1 span {
+    color: #facc22;
+    font-family: polo;
+}
+
+section .main .main_text p {
+    color: #000;
+    width: 650px;
+    position: relative;
+    top: 20px;
+    left: 5%;
+    line-height: 23px;
+    text-align: justify;
+}
+
+section .main .main_image img {
+    width: 650px;
+    animation: animate 5s linear infinite;
+}
+
+/* Add this CSS for mobile responsiveness */
+@media only screen and (max-width: 768px) {
+    section .main {
+        flex-direction: column;
+        text-align: center;
+        top: 0;
+    }
+
+    section .main .main_text h1 {
+        color: #000;
+        font-size: 50px;
+        position: relative;
+        top: 70px; /* Adjusted top position */
+        left: 0; /* Adjusted left position */
+    }
+
+    section .main .main_text h1 span {
+        color: #facc22;
+        font-family: polo;
+        font-size: 54px;
+    }
+    section .main .main_text {
+        width: auto;
+        margin: 20px;
+        text-align: center;
+    }
+
+    section .main .main_image img {
+        width: 80%;
+        animation: animate 5s linear infinite; /* Reapply animation */
+        margin-top: 100px; /* Add margin-top to move the image below the paragraph */
+    }
+
+    section .paragraph {
+        display: none;
+    }
+
+    @keyframes animate {
+        0% {
+            transform: scale(1.1);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+
+
