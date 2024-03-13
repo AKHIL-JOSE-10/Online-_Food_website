@@ -39,6 +39,12 @@
 
 
   @media (max-width: 767px) {
+    .home-container {
+      background-color: white;
+      padding: 20px;
+      margin-top: -30px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
     .home-title {
       color: #4caf50; /* Set a vibrant green text color */
       text-align: center;

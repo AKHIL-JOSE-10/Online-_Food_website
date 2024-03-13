@@ -23,9 +23,9 @@ export default function Confirmed_orders({ product }) {
     return (
         <div>
             {
-                loading ? <div class="spinner-border text-success" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div> :
+                loading ?  <div className="spinner-border m-5" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>:
                     <div className="order-container">
                         <h2 className="order-heading">Placed Orders</h2>
                         <div className="order-list">

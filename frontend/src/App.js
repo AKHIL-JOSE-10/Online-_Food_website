@@ -52,8 +52,8 @@ function App() {
      <Router>
 
       {
-        loading ?   <div className="spinner-border text-success" style={{marginTop:"300px"}} role="status">
-        <span className="sr-only">Loading...</span>
+        loading ?  <div className="spinner-border m-5" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div> :
       <div>
           <div className="header-container">

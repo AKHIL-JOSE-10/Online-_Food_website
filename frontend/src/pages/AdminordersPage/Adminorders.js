@@ -35,9 +35,9 @@ export const Adminorders = () => {
   return (
     <div style={{ marginTop: '90px' }}>
       {loading ? (
-        <div className="spinner-border text-success" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
+         <div className="spinner-border m-5" role="status">
+         <span className="visually-hidden">Loading...</span>
+       </div>
       ) : (
         <div className="order-container">
           <h2 className="order-heading">New Orders</h2>

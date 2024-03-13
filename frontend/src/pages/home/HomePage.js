@@ -37,11 +37,11 @@ export default function Home() {
     <div style={{marginTop:"-15px"}}>
       <Styleheader />
       {
-      loading ?   <div className="spinner-border text-success"  role="status">
-      <span className="sr-only">Loading...</span>
+      loading ?    <div className="spinner-border m-5" role="status">
+      <span className="visually-hidden">Loading...</span>
     </div> :
     <div>
-    <div className="home-container">
+    <div className="home-container" >
       <h1 className="home-title">
         <i>Explore Menu</i>{" "}
         <img

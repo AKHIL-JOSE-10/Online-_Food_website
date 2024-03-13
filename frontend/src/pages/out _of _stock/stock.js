@@ -52,8 +52,8 @@ export default function Stock() {
   return (
     <div style={{marginTop:"90px"}}>
       {
-         loading ?   <div class="spinner-border text-success"  role="status">
-         <span class="sr-only">Loading...</span>
+         loading ?   <div className="spinner-border m-5" role="status">
+         <span className="visually-hidden">Loading...</span>
        </div> :
          <div className="container mt-4">
          <table className="table table-bordered" style={{ border: "3px solid black",marginTop:'120px',marginBottom:'50px' }}>

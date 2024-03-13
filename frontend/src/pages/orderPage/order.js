@@ -21,14 +21,15 @@ export default function Order() {
   const unconfirmedOrders = orderlist.filter(order => (!order.confirm) );
   const unconfirmed = unconfirmedOrders .filter(order => order.ownerID === userInfo._id);
 
-console.log(unconfirmedOrders)
+
   return (
     <div style={{ marginTop: "100px",marginBottom:"50px"}}>
      
-     {loading ? (
-  <div className="spinner-border text-success" role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
+     {
+     loading ? (
+      <div className="spinner-border m-5" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
 ) : (
   unconfirmed.length > 0 ? (
     <div>

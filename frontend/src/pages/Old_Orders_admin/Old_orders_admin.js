@@ -22,8 +22,8 @@ export default function Old_orders_admin() {
     return ( 
         <div style={{marginTop:"90px"}}>
             {
-                loading ?  <div class="spinner-border text-success"  role="status">
-                <span class="sr-only">Loading...</span>
+                loading ?   <div className="spinner-border m-5" role="status">
+                <span className="visually-hidden">Loading...</span>
               </div> :
                <div className="order-container">
                <h2 className="order-heading">Old Orders</h2>
