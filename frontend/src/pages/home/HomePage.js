@@ -8,6 +8,7 @@ import Carousal from '../carousal/carousal.js';
 import chef from '../../components/images/chef.jpg';
 import Footer from '../footer/Footer.js';
 import About from '../About/About.js';
+import Reviews from '../../components/reviews/reviews.js';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -70,12 +71,12 @@ export default function Home() {
           ))
         )}
       </div>
-      <div>
-        <Carousal />
-      </div>
+      
     </div>
   </div>
       }
+
+      <Reviews/>
       <About/>
       <Footer />
     </div>
