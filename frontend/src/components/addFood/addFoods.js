@@ -15,27 +15,31 @@ export default function AddFoods() {
 
   const addfoodhandle = async (e) => {
     e.preventDefault();
-    setLoading(true)
     if (isNaN(price)) {
       alert("Please enter a valid price");
-      return;
     }
-    const uppercaseName = name.toUpperCase();
-    const formdata = new FormData();
-    formdata.append('file', file);
-    formdata.append('name', uppercaseName);
-    formdata.append('category', category);
-    formdata.append('description', description);
-    formdata.append('price', price);
-
-    try {
-      const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}AddFoodRouter`, formdata);
-      alert(result.data.message);
-      setLoading(false)
-      navigate('/')
-    } catch (err) {
-      console.log("Fill all fields")
+    else{
+      setLoading(true)
+      const uppercaseName = name.toUpperCase();
+      const formdata = new FormData();
+      formdata.append('file', file);
+      formdata.append('name', uppercaseName);
+      formdata.append('category', category);
+      formdata.append('description', description);
+      formdata.append('price', price);
+  
+      try {
+        const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}AddFoodRouter`, formdata);
+        alert(result.data.message);
+        navigate('/')
+      } catch (err) {
+        console.log("Fill all fields")
+      }
+      finally{
+        setLoading(false)
+      }
     }
+   
   };
 
   return (

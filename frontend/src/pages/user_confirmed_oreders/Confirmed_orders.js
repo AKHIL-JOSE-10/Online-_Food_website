@@ -20,6 +20,9 @@ export default function Confirmed_orders({ product }) {
 
     const confirmedOrders = orderlist.filter(order => order.confirm);
 
+    // Sort confirmed orders by createdAt in descending order
+    const sortedConfirmedOrders = confirmedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     return (
         <div>
             {
@@ -29,7 +32,7 @@ export default function Confirmed_orders({ product }) {
                     <div className="order-container">
                         <h2 className="order-heading">Placed Orders</h2>
                         <div className="order-list">
-                            {confirmedOrders.map((orderItem, index) => (
+                            {sortedConfirmedOrders.map((orderItem, index) => (
                                 userInfo._id === orderItem.ownerID ? (
                                     <div className="order-item" key={index}>
                                         {orderItem.products.map((product, productIndex) => (
@@ -44,6 +47,11 @@ export default function Confirmed_orders({ product }) {
                                         <div className="order-creation-time">
                                             <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
                                         </div>
+                                        {orderItem.delivered ? (
+                                            <div style={{fontSize:"30px",color:"green"}}>Delivered</div>
+                                        ) : (
+                                            <div>Not Delivered</div>
+                                        )}
                                     </div>
                                 ) : null
                             ))}

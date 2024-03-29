@@ -29,7 +29,7 @@ export default function Register() {
       alert("passwords not matched")
     }
     else {
-      console.log(name)
+     
       axios.post(`${process.env.REACT_APP_BACKEND_URL}register/user/UserRegister`, { name, email, password })
         .then((result) => {
           Swal.fire({

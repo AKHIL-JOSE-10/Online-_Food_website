@@ -21,9 +21,9 @@ router.get("/cartitems", async (req, res) => {
 });
 
 router.post("/cart",async(req,res)=>{
-    const{ownerID,name,cartItems}=req.body
+    const{ownerID,name,code,cartItems}=req.body
     try{
-        const newCart=await new CartModel({ownerID,name,products:cartItems})
+        const newCart=await new CartModel({ownerID,name,code,products:cartItems})
        if(newCart)
        {
        await newCart.save()
@@ -40,10 +40,10 @@ router.post("/cart",async(req,res)=>{
 
 router.put("/update/updateCart/:id", async (req, res) => {
     const { id } = req.params
-    const {confirm} = req.body
+    const {confirm,delivered} = req.body
   
     try {
-        const getCart = await CartModel.findByIdAndUpdate({_id:id},{confirm});
+        const getCart = await CartModel.findByIdAndUpdate({_id:id},{confirm,delivered});
       
     if (getCart) {
             return res.json({message:"Confirmed Order"});

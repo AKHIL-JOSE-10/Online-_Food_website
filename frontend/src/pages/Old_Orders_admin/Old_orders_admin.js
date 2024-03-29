@@ -17,7 +17,7 @@ export default function Old_orders_admin() {
           .catch(err => console.log(err));
       }, []);
 
-      const confirmedOrders = orderlist.filter(order => order.confirm);
+      const confirmedOrders = orderlist.filter(order => order.confirm && order.delivered);
 
     return ( 
         <div style={{marginTop:"90px"}}>
@@ -30,7 +30,7 @@ export default function Old_orders_admin() {
                <div className="order-list">
                  {confirmedOrders.map((orderItem, index) => (
                      <div className="order-item" key={index}>
-                     <h2 style={{ marginBottom: '30px', color: "green" }}>{orderItem.name}</h2>
+                     <h2 style={{ marginBottom: '30px', color: "green" }}>{orderItem.name}<h4><b style={{color:"red"}}>token : {" "}{orderItem.code}</b></h4></h2>
                      {orderItem.products.map((product, productIndex) => (
                          <div className="order-item-content" key={productIndex}>
                              <div className="order-item-name" style={{ color: 'green' }}><b>{product.name}</b></div>

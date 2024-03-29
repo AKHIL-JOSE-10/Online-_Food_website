@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     try {
         food_items = await FoodModel.find()
         if(!food_items){
-            return res.json("no food items added")
+            return res.json("no food items found")
         }
     }
     catch (err) {

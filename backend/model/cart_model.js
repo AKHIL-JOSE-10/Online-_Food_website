@@ -8,6 +8,10 @@ const CartSchema = new mongoose.Schema({
     name: {
         type: String
     },
+    code: {
+        type: String,
+        require: true,
+    },
     products: [{
         name: {
             type: String,
@@ -25,6 +29,10 @@ const CartSchema = new mongoose.Schema({
         },
     }],
     confirm: {
+        type: Boolean,
+        default:false
+    },
+    delivered: {
         type: Boolean,
         default:false
     }

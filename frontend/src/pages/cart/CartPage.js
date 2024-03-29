@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../actions/cartActions';
 import { deleteFromCart } from '../../actions/cartActions';
@@ -19,27 +19,35 @@ export default function Cart() {
 
   const [loading, setLoading] = useState(false)
   const [NewWallet, setNewWallet] = useState('')
+  const [code, setCode] = useState('');
 
-    useEffect(() => {
-      (axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/${userInfo._id}`))
-            .then((result) => {
-                setNewWallet(result.data.wallet);
-            })
-            .catch((err) => console.log(err));
-    }, []); 
+  useEffect(() => {
+    (axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/${userInfo._id}`))
+      .then((result) => {
+        setNewWallet(result.data.wallet);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const generateUniqueCode = () => {
+    const code = Math.floor(10000 + Math.random() * 90000);
+    return code.toString().substring(0, 4);
+  };
 
   const handleSubmit = async () => {
     try {
-      const New_Wallet = NewWallet - subtotal
-      const ownerID = userInfo._id
-      const name = userInfo.name
-
+      const New_Wallet = NewWallet - subtotal;
+      const ownerID = userInfo._id;
+      const name = userInfo.name;
+  
       if (New_Wallet >= 0) {
+        const uniqueCode = generateUniqueCode();
+  
         Swal.fire({
           title: "Are you sure?",
           text: `Subtotal ${subtotal} RS`,
           icon: "warning",
-          borderRadius:'50%',
+          borderRadius: '50%',
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
@@ -51,15 +59,15 @@ export default function Cart() {
               text: `Balance amount on Wallet ${New_Wallet}`,
               icon: "success"
             });
-
+  
             setLoading(true);
-         
+  
             await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${userInfo._id}`, { wallet: New_Wallet })
-            .then((result)=>{
-              console.log("successfully updated wallet")
-            }).catch(err=>{alert("error")})
-
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, cartItems })
+              .then((result) => {
+                console.log("successfully updated wallet")
+              }).catch(err => { alert("error") })
+  
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, code: uniqueCode, cartItems })
               .then((result) => {
                 navigate('/Order')
                 window.location.reload()
@@ -69,26 +77,25 @@ export default function Cart() {
                 alert('error')
               })
               .finally(setLoading(false))
-
+  
             window.localStorage.removeItem("cartItems");
-          } 
+          }
         });
       } else {
         alert("Don't have enough amount on wallet");
       }
     } catch (err) {
       console.log("error", err);
-    } finally{
-      
     }
   };
+  
 
   return (
     <div style={{ marginTop: '90px' }}>
       <div className="row justify-content-center">
         <div className="col-md-6 mt-5 mb-5">
           <h2 style={{ fontSize: "40px", color: "#333", fontFamily: "cursive", textAlign: "center", textShadow: "2px 2px 2px #ccc" }}>My Cart</h2>
-          { cartItems.map((items) => (
+          {cartItems.map((items) => (
             <div className="flex-container" key={items._id}>
               <div className='text-left m-1'>
                 <div className="order-item-content">
@@ -107,7 +114,7 @@ export default function Cart() {
                       <img src={`https://online-food-website.onrender.com/images/${items.image}`} style={{ height: '80px', width: '80px', borderRadius: "50%", boxShadow: "2px 2px 5px #888" }} alt="Image" />
                       <FaTrash style={{ color: 'red', marginLeft: '10px', fontSize: "20px" }} onClick={() => { dispatch(deleteFromCart(items)) }} />
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
@@ -129,5 +136,4 @@ export default function Cart() {
       </div>
     </div>
   );
-          
 }
