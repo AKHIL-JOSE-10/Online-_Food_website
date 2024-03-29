@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Foods from '../../components/food/FoodComponent.js';
 import axios from 'axios';
 import './home.css'; 
-import Styleheader from '../styleheader/Styleheader.js';
+import Header from '../../components/Header/Header.js';
 // import Top from '../../components/Topbar/top.js';
 import Carousal from '../carousal/carousal.js';
 import chef from '../../components/images/chef.jpg';
 import Footer from '../footer/Footer.js';
 import About from '../About/About.js';
-import Reviews from '../../components/reviews/reviews.js';
+import Bestfood from '../../components/reviews/BestFood.js';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <div style={{marginTop:"-15px"}}>
-      <Styleheader />
+      <Header />
       {
       loading ?    <div className="spinner-border m-5" role="status">
       <span className="visually-hidden">Loading...</span>
@@ -44,7 +44,7 @@ export default function Home() {
     <div>
     <div className="home-container" >
       <h1 className="home-title">
-        <i>Explore Menu</i>{" "}
+        <i style={{marginLeft:"10px"}}>Explore Menu</i>{" "}
         <img
           className="moving-image"
           src={chef}
@@ -76,7 +76,7 @@ export default function Home() {
   </div>
       }
 
-      <Reviews/>
+      <Bestfood/>
       <About/>
       <Footer />
     </div>

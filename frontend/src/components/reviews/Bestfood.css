@@ -1,14 +1,6 @@
  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
- /* body{
-     font-family: 'Poppins', sans-serif;
-     font-weight: 300;
-     font-size: 15px;
-     line-height: 1.7;
-     color: #343434;
-     background-color: #f1f2f6;
-     overflow-x: hidden;
- } */
+
  a {
      cursor: pointer;
  }
@@ -52,7 +44,7 @@
    box-sizing: border-box;
    -webkit-transition: all 0.2s ease;
    transition: all 0.2s ease;
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/Rice.jpg');
    animation: border-transform 6s linear infinite alternate forwards;
      -webkit-animation-play-state: paused;
      -moz-animation-play-state: paused;
@@ -62,10 +54,10 @@
    background-image: url('../../components/images/biriyani.avif');
  }
  .checkbox.thrd + label{
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/Porotta.jpg');
  }
  .checkbox.foth + label{
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/FriedRice.jpg');
  }
  
  .checkbox:checked + label{
@@ -114,7 +106,7 @@
    border: 5px solid #bdc3c7;
    background-size: cover;
    background-position: center;
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/Rice.jpg');
    border-radius: 50%;
    box-sizing: border-box;
    font-family: 'Poppins', sans-serif;
@@ -137,10 +129,10 @@
    background-image: url('../../components/images/biriyani.avif');
  }
  ul li:nth-child(3) {
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/Porotta.jpg');
  }
  ul li:nth-child(4) {
-   background-image: url('../../components/images/biriyani.avif');
+   background-image: url('../../components/images/FriedRice.jpg');
  }
  
  

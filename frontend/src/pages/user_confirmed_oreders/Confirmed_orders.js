@@ -35,6 +35,7 @@ export default function Confirmed_orders({ product }) {
                             {sortedConfirmedOrders.map((orderItem, index) => (
                                 userInfo._id === orderItem.ownerID ? (
                                     <div className="order-item" key={index}>
+                  <h2 style={{ marginBottom: '30px', color: "green" }}>{orderItem.name}<h4><b style={{color:"red"}}>token : {" "}{orderItem.code}</b></h4></h2>
                                         {orderItem.products.map((product, productIndex) => (
                                             <div className="order-item-content" key={productIndex}>
                                                 <div className="order-item-name" style={{ color: 'green' }}><b>{product.name}</b></div>
@@ -44,13 +45,14 @@ export default function Confirmed_orders({ product }) {
                                                 </div>
                                             </div>
                                         ))}
+                                        
                                         <div className="order-creation-time">
                                             <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
                                         </div>
                                         {orderItem.delivered ? (
                                             <div style={{fontSize:"30px",color:"green"}}>Delivered</div>
                                         ) : (
-                                            <div>Not Delivered</div>
+                                            <div style={{color:"red",fontSize:"30px"}}>Not Delivered</div>
                                         )}
                                     </div>
                                 ) : null

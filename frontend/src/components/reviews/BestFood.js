@@ -1,9 +1,8 @@
 import React from 'react';
-import burgerImage from '../images/burger.jpg'; // Assuming burger.jpg is in the correct path
-import img from '../../components/images/biriyani.avif';
+import burgerImage from '../images/burger.jpg'; 
+import './Bestfood.css'
 
-import './reviews.css'
-function Reviews() {
+function Bestfood() {
   return (
     <div>
          <h2 className='mb-3' style={{ color: 'green', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', textAlign: 'center', fontSize: '35px', letterSpacing: '1px' }}>
@@ -28,16 +27,16 @@ function Reviews() {
                 <label htmlFor="slider-4"></label>
                 <ul>
                   <li>
-                    <span>MALE GOOFY FACE</span>
+                    <span style={{color:"white"}}>Rice</span>
                   </li>
                   <li>
-                    <span>TOY PIG</span>
+                    <span style={{color:"white"}}>Biriyani</span>
                   </li>
                   <li>
-                    <span>SHY PORTRAIT</span>
+                    <span style={{color:"white"}}>Porotta</span>
                   </li>
                   <li>
-                    <span>SKATEBOARD FACE</span>
+                    <span style={{color:"white"}}>Fried Rice</span>
                   </li>
                 </ul>
               </div>
@@ -49,4 +48,4 @@ function Reviews() {
   );
 }
 
-export default Reviews;
+export default Bestfood;
