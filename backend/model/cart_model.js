@@ -12,6 +12,10 @@ const CartSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    subtotal: {
+        type: String,
+        require: true,
+    },
     products: [{
         name: {
             type: String,
@@ -33,6 +37,11 @@ const CartSchema = new mongoose.Schema({
         default:false
     },
     delivered: {
+        type: Boolean,
+        default:false
+    }
+    ,
+    cancel: {
         type: Boolean,
         default:false
     }

@@ -67,7 +67,7 @@ export default function Cart() {
                 console.log("successfully updated wallet")
               }).catch(err => { alert("error") })
   
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID, name, code: uniqueCode, cartItems })
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}user/cart`, { ownerID,subtotal, name, code: uniqueCode, cartItems })
               .then((result) => {
                 navigate('/Order')
                 window.location.reload()

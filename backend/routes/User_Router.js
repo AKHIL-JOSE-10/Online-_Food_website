@@ -108,6 +108,29 @@ router.put('/update/users/:id', async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 });
+router.put('/update/users/order/:id', async (req, res) => {
+    const id = req.params.id;
+    const { wallet } = req.body;
+
+    try {
+        const initialwallet=await UserModal.findOne({_id:id})
+
+        const initialWalletAmount = parseFloat(initialwallet.wallet);
+        const walletAmount = parseFloat(wallet);
+
+        const newWallet=initialWalletAmount+walletAmount
+        console.log(newWallet)
+        const updatedUser = await UserModal.findByIdAndUpdate({ _id: id }, { wallet: newWallet });
+        if (updatedUser) {
+            return res.json({ message: "Successfully updated", user: updatedUser });
+        } else {
+            return res.status(404).json({ message: "User not found" });
+        }
+    } catch (error) {
+        console.error("Error updating user:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 router.put('/Message/:id', async (req, res) => {
     const id = req.params.id

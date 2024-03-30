@@ -6,7 +6,6 @@ export const Adminorders = () => {
   const [orderlist, setOrderlist] = useState([]);
   const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -14,13 +13,26 @@ export const Adminorders = () => {
       .then((result) => {
         const sortedOrders = result.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setOrderlist(sortedOrders);
-        setLoading(false);
+        
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(setLoading(false))
   }, []);
 
+  const handleCancel = (orderId, subtotal, ownerID) => {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}food/UpdateUser/update/users/order/${ownerID}`, { wallet: subtotal })
+      .then((result) => {
+        console.log("successfully updated wallet")
+      }).catch(err => { alert("error") })
+
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { delivered: false, confirm: false, cancel: true })
+      .then(res => { alert("Cancelled") })
+      .catch(err => { alert("Error") })
+    window.location.reload()
+  }
+
   const handleConfirmOrders = (orderId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { delivered: false, confirm: true })
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { delivered: false, confirm: true, cancel: false })
       .then((result) => {
         Swal.fire({
           text: "Successful",
@@ -33,7 +45,7 @@ export const Adminorders = () => {
   };
 
   const handledeliveredOrders = (orderId) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { confirm: true, delivered: true })
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { confirm: true, delivered: true, cancel: false })
       .then((result) => {
         Swal.fire({
           text: "Successful",
@@ -45,7 +57,7 @@ export const Adminorders = () => {
       .catch(err => console.log('Server error occurred'));
   };
 
-  const unconfirmedOrders = orderlist.filter(order => !order.confirm || !order.delivered);
+  const unconfirmedOrders = orderlist.filter(order => (!order.confirm || !order.delivered) && !order.cancel);
 
   return (
     <div style={{ marginTop: '90px' }}>
@@ -62,7 +74,7 @@ export const Adminorders = () => {
             ) : (
               unconfirmedOrders.map((orderItem, index) => (
                 <div className="order-item" key={index}>
-                  <h2 style={{ marginBottom: '30px', color: "green" }}>{orderItem.name}<h4><b style={{color:"red"}}>token : {" "}{orderItem.code}</b></h4></h2>
+                  <h2 style={{ marginBottom: '30px', color: "green" }}>{orderItem.name}<h4><b style={{ color: "red" }}>token : {" "}{orderItem.code}</b></h4></h2>
                   {orderItem.products.map((product, productIndex) => (
                     <div className="order-item-content" key={productIndex}>
                       <div className="order-item-name"><b>{product.name}</b></div>
@@ -88,9 +100,14 @@ export const Adminorders = () => {
                       )}
                     </>
                   ) : (
-                    <button className="btn btn-success" onClick={() => handleConfirmOrders(orderItem._id)}>
-                      Confirm Order
-                    </button>
+                    <div>
+                      <button className="btn btn-success" onClick={() => handleConfirmOrders(orderItem._id, orderItem.subtotal, orderItem.ownerID)}>
+                        Confirm Order
+                      </button>
+                      <button className="btn btn-success " style={{ backgroundColor: "red", marginLeft: "20px" }} onClick={() => handleCancel(orderItem._id, orderItem.subtotal, orderItem.ownerID)}>
+                        Cancel
+                      </button>
+                    </div>
                   )}
                 </div>
               ))

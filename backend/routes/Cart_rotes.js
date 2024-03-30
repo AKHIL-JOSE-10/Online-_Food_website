@@ -7,12 +7,13 @@ const router = express.Router()
 router.get("/cartitems", async (req, res) => {
 
     try {
+     
         const getCart = await CartModel.find({});
 
         if (getCart.length > 0) {
             return res.json(getCart);
         } else {
-            return res.status(404).json({ message: "Cart is empty" });
+            return res.json({ message: "Cart is empty" });
         }
     } catch (err) {
         console.log(err);
@@ -21,9 +22,9 @@ router.get("/cartitems", async (req, res) => {
 });
 
 router.post("/cart",async(req,res)=>{
-    const{ownerID,name,code,cartItems}=req.body
+    const{ownerID,name,code,subtotal,cartItems}=req.body
     try{
-        const newCart=await new CartModel({ownerID,name,code,products:cartItems})
+        const newCart=await new CartModel({ownerID,name,code,subtotal,products:cartItems})
        if(newCart)
        {
        await newCart.save()
@@ -40,10 +41,10 @@ router.post("/cart",async(req,res)=>{
 
 router.put("/update/updateCart/:id", async (req, res) => {
     const { id } = req.params
-    const {confirm,delivered} = req.body
+    const {confirm,delivered,cancel} = req.body
   
     try {
-        const getCart = await CartModel.findByIdAndUpdate({_id:id},{confirm,delivered});
+        const getCart = await CartModel.findByIdAndUpdate({_id:id},{confirm,delivered,cancel});
       
     if (getCart) {
             return res.json({message:"Confirmed Order"});

@@ -45,7 +45,7 @@ export default function Foods({ food }) {
       <div onClick={handleShow}>
         <h1>{food.name}</h1>
         <img
-          src={`https://online-food-website.onrender.com/images/${food.image}`}
+          src={`${process.env.REACT_APP_BACKEND_URL}images/${food.image}`}
           className='img-fluid'
           style={{ height: '200px', maxWidth: '100%', width: 'auto' }}
           alt='food Image'

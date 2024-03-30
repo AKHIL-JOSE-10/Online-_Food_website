@@ -8,9 +8,6 @@ function Bestfood() {
          <h2 className='mb-3' style={{ color: 'green', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', textAlign: 'center', fontSize: '35px', letterSpacing: '1px' }}>
   Best selling Foods
 </h2>
-      <a href="https://front.codes/" className="logo hover-target" target="_blank">
-        <img src={burgerImage} alt="" />
-      </a>
 
       <div className="section full-height over-hide px-4 px-sm-0">
         <div className="container">

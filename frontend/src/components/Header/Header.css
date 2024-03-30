@@ -5,6 +5,7 @@ section .main {
     position: relative;
     top: 80px;
     background-color: rgb(72, 70, 70);
+    margin-bottom: 100px;
 }
 
 section .main .main_text h1 {
