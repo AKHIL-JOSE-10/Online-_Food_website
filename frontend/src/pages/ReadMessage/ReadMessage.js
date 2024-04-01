@@ -20,33 +20,33 @@ export default function ReadMessage() {
     return (
         <div>
             {
-                  loading ?   <div className="spinner-border text-success" style={{marginTop:"300px"}} role="status">
-                  <span className="sr-only">Loading...</span>
+                loading ? <div className="spinner-border text-success" style={{ marginTop: "300px" }} role="status">
+                    <span className="sr-only">Loading...</span>
                 </div> :
-                <div>
-<div className="table-container read-message-container">
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Email</th>
-                        <th scope="col">Message</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list.map((user) => (
-                        user.message ? (
-                            <tr key={user._id}>
-                                <td className="email-column">{user.email}</td>
-                                <td className="message-column">{user.message}</td>
-                            </tr>
-                        ) : null
-                    ))}
-                </tbody>
-            </table>
-        </div>
-                </div>
+                    <div>
+                        <div className="table-container read-message-container">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {list.map((user) => (
+                                        user.message ? (
+                                            <tr key={user._id}>
+                                                <td className="email-column">{user.email}</td>
+                                                <td className="message-column">{user.message}</td>
+                                            </tr>
+                                        ) : null
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             }
         </div>
-        
+
     );
 }

@@ -19,14 +19,14 @@ export const Adminorders = () => {
       .finally(setLoading(false))
   }, []);
 
-  const handleCancel = (orderId, subtotal, ownerID) => {
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}food/UpdateUser/update/users/order/${ownerID}`, { wallet: subtotal })
+  const handleCancel = async(orderId, subtotal, ownerID) => {
+    await axios.put(`${process.env.REACT_APP_BACKEND_URL}food/UpdateUser/update/users/order/${ownerID}`, { wallet: subtotal })
       .then((result) => {
         console.log("successfully updated wallet")
       }).catch(err => { alert("error") })
 
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { delivered: false, confirm: false, cancel: true })
-      .then(res => { alert("Cancelled") })
+   await axios.put(`${process.env.REACT_APP_BACKEND_URL}cartitem/update/updateCart/${orderId}`, { delivered: false, confirm: false, cancel: true })
+      .then(res => {console.log("Cancelled") })
       .catch(err => { alert("Error") })
     window.location.reload()
   }
