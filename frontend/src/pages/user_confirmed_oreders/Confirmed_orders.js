@@ -61,7 +61,10 @@ export default function Confirmed_orders({ product }) {
                                                 <p>Amount successfully remitted</p>
                                                 </>
                                             ) : (
-                                                <div style={{color:"red",fontSize:"30px"}}>Not Delivered</div>
+                                                <>
+                                                  <div style={{color:"red",fontSize:"25px"}}>Order Confirmed</div>
+                                                <div style={{color:"green"}}>food will be ready within 10 mins</div>
+                                                </>
                                             )}
                                         </div>
                                     ) : null
