@@ -15,7 +15,7 @@ export default function Order() {
         setOrderlist(result.data);
         setLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log("err"));
   }, []);
 
   let unconfirmed = [];
