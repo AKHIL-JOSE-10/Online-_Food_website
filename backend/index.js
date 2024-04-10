@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import { Food_Router } from './routes/food_routes.js'
 import { UserRouter } from './routes/User_Router.js'
 import { CartRouter } from './routes/Cart_rotes.js'
-
+import { ReviewRouter } from './routes/ReviewRouter.js'
 
 dotenv.config()
 const app =express()
@@ -19,6 +19,7 @@ app.use('/register',UserRouter)
 app.use('/wallet',UserRouter)
 app.use('/Login',UserRouter)
 app.use('/getALLFoods',Food_Router)
+app.use('/onefood/getALLFoods',Food_Router)
 app.use('/AddFoodRouter',Food_Router)
 app.use('/deletefood',Food_Router)
 app.use('/GetUpdateUser',UserRouter)
@@ -29,6 +30,8 @@ app.use('/Contact/user',UserRouter)
 app.use('/cart/getcart',CartRouter)
 app.use('/user',CartRouter)
 app.use('/cartitem',CartRouter)
+app.use('/review',ReviewRouter)
+app.use('/review/add/',ReviewRouter)
 
 
 

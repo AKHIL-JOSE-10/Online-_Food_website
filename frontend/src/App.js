@@ -11,6 +11,7 @@ import Update from './pages/updateWallet/UpdateWallet.js';
 import Stock from './pages/out _of _stock/stock.js';
 import Contact from './components/contact/contact.js';
 import ReadMessage from './pages/ReadMessage/ReadMessage.js';
+import { Review } from './pages/review/Review.js';
 import Order from './pages/orderPage/order.js';
 import {Adminorders} from './pages/AdminordersPage/Adminorders.js';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
@@ -73,7 +74,8 @@ function App() {
      <Route path='/Adminorders' element={<Adminorders/>}></Route>   
      <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
      <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>       
-     <Route path='/About' element={<About/>}></Route>                      
+     <Route path='/About' element={<About/>}></Route>    
+     <Route path='/Review/:id' element={<Review/>}></Route>                    
    </Routes>
       </div>
       } 

@@ -24,7 +24,10 @@ const FoodSchema = new mongoose.Schema({
         type:Boolean,
         required:true,
         default:true
-    }
+    },
+    Review:[
+        String
+    ]
 },{
     timestamps:true,
 } )

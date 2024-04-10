@@ -1,0 +1,4 @@
+.description {
+    word-wrap: break-word; /* Wrap long words */
+    max-width: 100%;
+  }

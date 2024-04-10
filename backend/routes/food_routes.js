@@ -38,6 +38,24 @@ router.get('/', async (req, res) => {
     return res.status(200).json(food_items)
 })
 
+router.get('/food/:id', async (req, res) => {
+    const id = req.params.id
+    let food_items
+    try {
+        food_items = await FoodModel.findById({_id:id})
+        
+        if(!food_items){
+            return res.json("no food items found")
+        }
+        return res.status(200).json(food_items)
+
+    }
+    catch (err) {
+        console.log("cannot get food_items")
+    }
+  return res.status(500).json({ message: "cant find Food Items" })
+})
+
 router.post('/',upload.single('file'),async(req,res)=> {
     const {name,price,category,description} = req.body
     const file=req.file

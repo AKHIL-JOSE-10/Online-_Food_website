@@ -10,7 +10,7 @@ export default function Header() {
 
 <div className="main_text">
 
-    <h1>Get Fresh<span> Food</span><br/>in a Easy Way</h1>
+<h1>Get Fresh<span> Food</span><br/>in a Easy Way</h1>
 
 </div>
 

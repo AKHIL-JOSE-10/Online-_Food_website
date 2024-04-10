@@ -18,10 +18,7 @@ export default function Top() {
               <b className="text-style">Are always the best </b><br />
               <b className="text-style"> People..</b>
             </div>
-            {/* rotating */}
-            <div className="rotating-spinning-container">
-              <img className="rotating-spinning-image" src={pizza} alt="Rotating Spinning Image" />
-            </div>
+            
           </div>
         </div>
         <a className="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev"></a>

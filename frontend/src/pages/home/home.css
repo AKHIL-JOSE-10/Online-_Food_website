@@ -32,8 +32,8 @@
   }
 
   .search-form-control {
-    width: 500px !important;
-    margin-left: -150px !important;
+    width: 600px !important;
+    margin-left: -10px !important;
     border: 2px solid green; /* Adjust the width of the search field */
   }
 

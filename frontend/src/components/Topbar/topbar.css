@@ -107,14 +107,14 @@
   border-radius: 50%; /* Set border-radius to create a circle */
 }
 
-@keyframes rotateClockwise {
+/* @keyframes rotateClockwise {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 /* Mobile Styles */
 @media (max-width: 1450px) {
@@ -122,13 +122,13 @@
     display: none !important;
   }
 }
-
+/* 
 .moving-image-container {
   width: 100%;
   height: 20vh;
   overflow: hidden;
   position: relative;
-}
+} */
 
 
 

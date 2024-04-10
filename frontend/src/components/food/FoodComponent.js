@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2'
 export default function Foods({ food }) {
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
-  
+
 
   const dispatch = useDispatch();
 
@@ -41,7 +42,7 @@ export default function Foods({ food }) {
   };
 
   return (
-    <div className='shadow-lg p-3 mb-5 bg-body ' style={{ borderRadius:"20px", border:"1px solid black" }}>
+    <div className='shadow-lg p-3 mb-5 bg-body ' style={{ borderRadius: "20px", border: "1px solid black" }}>
       <div onClick={handleShow}>
         <h1>{food.name}</h1>
         <img
@@ -53,26 +54,26 @@ export default function Foods({ food }) {
       </div>
 
       <div className='flex-container'>
-        { userInfo && !userInfo.isAdmin && (
-           <div className='w-100 m-1'>
-           <p>Quantity:</p>
-           <select
-             className='form-control'
-             value={quantity}
-             onChange={(e) => {
-               setQuantity(e.target.value);
-             }}
-           >
-             {[...Array.from(Array(10).keys()).map((i) => (
-               <option key={i + 1} value={i + 1}>
-                 {i + 1}
-               </option>
-             ))]}
-           </select>
-         </div>
+        {userInfo && !userInfo.isAdmin && (
+          <div className='w-100 m-1'>
+            <p>Quantity:</p>
+            <select
+              className='form-control'
+              value={quantity}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
+            >
+              {[...Array.from(Array(10).keys()).map((i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))]}
+            </select>
+          </div>
         )
         }
-       
+
       </div>
 
       <div className='flex-container'>
@@ -83,21 +84,29 @@ export default function Foods({ food }) {
         </div>
 
         <div className='m-1 w-100'>
-          { userInfo ? (
-          userInfo && userInfo.isAdmin ? (
-            <button className='btn btn-danger' onClick={() => handleDelete(food._id)}>
-              Delete
-            </button>
-          ) : (
-            <button
-              className={`btn ${food.stock ? 'btn-primary' : 'btn-secondary'}`}
-              onClick={() => (food.stock ? addtocart() : null)}
-              disabled={!food.stock}
-            >
-              {food.stock ? 'Add to Cart' : 'Out of Stock'}
-            </button>
-          )
-          ) : ( <button className='btn btn-standard' disabled > Login to Order </button>)
+          {userInfo ? (
+            userInfo && userInfo.isAdmin ? (
+              <>
+                <button className='btn btn-danger' onClick={() => handleDelete(food._id)}>
+                  Delete
+                </button>
+                <Link to={`/Review/${food._id}`} style={{ marginLeft: "20px" }}>reviews</Link>
+              </>
+
+            ) : (
+              <>
+               <button
+                className={`btn ${food.stock ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => (food.stock ? addtocart() : null)}
+                disabled={!food.stock}
+              >
+                {food.stock ? 'Add to Cart' : 'Out of Stock'}
+              </button>
+              <Link to={`/Review/${food._id}`} style={{ marginLeft: "20px" }}>reviews</Link>
+              </>
+
+            )
+          ) : (<button className='btn btn-standard' disabled > Login to Order </button>)
           }
         </div>
       </div>

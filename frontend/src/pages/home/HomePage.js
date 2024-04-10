@@ -9,6 +9,7 @@ import chef from '../../components/images/chef.jpg';
 import Footer from '../footer/Footer.js';
 import About from '../About/About.js';
 import Bestfood from '../../components/reviews/BestFood.js';
+import Top from '../../components/Topbar/top.js';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -35,8 +36,8 @@ export default function Home() {
   };
 
   return (
-    <div style={{marginTop:"-15px"}}>
-      <Header />
+    <div >
+      <Top />
       {
       loading ?    <div className="spinner-border m-5" role="status">
       <span className="visually-hidden">Loading...</span>
