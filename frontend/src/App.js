@@ -10,6 +10,7 @@ import AddFoods from './components/addFood/addFoods.js'
 import Update from './pages/updateWallet/UpdateWallet.js';
 import Stock from './pages/out _of _stock/stock.js';
 import Contact from './components/contact/contact.js';
+import Reviewedit from './pages/reviewedit/reviewedit.js';
 import ReadMessage from './pages/ReadMessage/ReadMessage.js';
 import { Review } from './pages/review/Review.js';
 import Order from './pages/orderPage/order.js';
@@ -75,7 +76,9 @@ function App() {
      <Route path='/Confirmed_orders' element={<Confirmed_orders/>}></Route>   
      <Route path='/Old_orders_admin' element={<Old_orders_admin/>}></Route>       
      <Route path='/About' element={<About/>}></Route>    
-     <Route path='/Review/:id' element={<Review/>}></Route>                    
+     <Route path='/Review/:id' element={<Review/>}></Route>   
+     <Route path='/Reviewedit/:id' element={<Reviewedit/>}></Route>                    
+
    </Routes>
       </div>
       } 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import userimage from '../../components/images/user.webp'
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './review.css'
 export const Review = () => {
@@ -77,11 +78,12 @@ export const Review = () => {
                 </div> */}
                 {reviewDetails.map((reviewDetail, index) => (
                     <div key={index} className="col-md-3" >
-                        <div style={{ borderRadius: "20px", border: "1px solid black", background: "lightgrey" }}>
+                        <div style={{ borderRadius: "20px", border: "1px solid black", background: "lightgrey",paddingBottom:"15px" }}>
                             <p><img src={userimage} alt="" style={{ width: "60px", height: "60px", borderRadius: "80px", marginRight: "20px" }} /><b>{reviewDetail.review?.name}</b></p>
                             <p className="description">Description: <b>{reviewDetail.review?.description}</b></p>
-
+                            <Link to={`/Reviewedit/${reviewDetail.review.id}`}>Edit</Link>
                         </div>
+                       
                     </div>
                 ))}
             </div>
