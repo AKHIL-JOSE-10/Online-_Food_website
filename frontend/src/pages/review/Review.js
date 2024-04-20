@@ -28,7 +28,6 @@ export const Review = () => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}GetUpdateUser/users/${user._id}`)
             .then((res) => {
                 setUserInfos(res.data);
-                console.log("hi",userInfos.review)
             })
             .catch((err) => {
                 console.error("Error fetching user information:", err);
@@ -71,10 +70,10 @@ export const Review = () => {
         fetchReviewDetails();
     }, [reviews]);
 
-
     return (
         <div style={{ marginTop: "100px" }}>
             <h3 style={{ marginTop: "100px", marginBottom: "50px" }}>Reviews</h3>
+            {reviewDetails.length === 0 && <p>No reviews yet!</p>}
             <div className="row">
                 {reviewDetails.map((reviewDetail, index) => (
                     <div key={index} className="col-md-3">
