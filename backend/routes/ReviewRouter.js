@@ -6,10 +6,8 @@ import { FoodModel } from "../model/Food_model.js";
 
 router.get('/rev/:id',async(req,res)=>{
     const id = req.params.id
-    console.log(id)
     try{
         const review = await ReviewModel.findById({_id:id})
-        console.log(review)
         if(review){
             return res.json({review})
 
@@ -26,20 +24,17 @@ router.get('/rev/:id',async(req,res)=>{
 
 router.post('/addreview/:id',async(req,res)=>{
 const {name,description} = req.body
-console.log(req.params.id)
     try{
         const review = await new ReviewModel({name,description})
         if(review){
             await review.save()
-            console.log(review.id)
            
             const updatedfood =   await FoodModel.findByIdAndUpdate(req.params.id,{
                 $push:{
                     Review:review._id
                 }
             },{ new: true })
-            console.log(updatedfood)
-            return res.json({message:"succssfully added"})
+            return res.json({message:"successfully added"})
 
         }
         else {
@@ -52,5 +47,26 @@ console.log(req.params.id)
 
 })
 
+router.post('/editreview/:id',async(req,res)=>{
+    const {review} = req.body
+    const id = req.params.id
+    console.log("hi",id)
+    console.log("hi",review)
+
+        try{
+            const rev = await ReviewModel.findByIdAndUpdate({_id:id},{description:review})
+            if(rev){               
+                return res.json({message:"updated"})
+            }
+            else {
+                return res.json({message:"cannot add to database"})
+            }
+        }
+        catch(err){
+            return res.json({message:"server error"})
+        }
+    
+    })
+    
 
 export {router as ReviewRouter}

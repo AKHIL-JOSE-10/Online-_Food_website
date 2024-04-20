@@ -37,26 +37,34 @@ router.post('/LoginUser', async (req, res) => {
     const { email, password } = req.body
     let user
     try {
-        user = await UserModal.findOne({ email })
+        user = await UserModal.findOne({email})
     } catch (err) {
         console.log("cant Login")
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if(user)
+    {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordValid) {
-        console.log("hello")
-        return res.status(200).send({ message: 'Login Failed' });
-    }
-    else {
-        if (user) {
-            const token = jwt.sign({ id: user._id }, "secret")
-            res.json({ token, user })
+        if (!isPasswordValid) {
+            console.log("hello")
+            return res.status(200).send({ message: 'Login Failed' });
         }
         else {
-            return res.json({ message: "Login Failed" })
-
+            if (user) {
+                const token = jwt.sign({ id: user._id }, "secret")
+                res.json({ token, user })
+            }
+            else {
+                return res.json({ message: "Login Failed" })
+    
+            }
         }
     }
+    else{
+        return res.json({ message: "Login Failed" })
+
+    }
+  
 }
 )
 
@@ -94,10 +102,10 @@ router.get('/users/:id', async (req, res) => {
 
 router.put('/update/users/:id', async (req, res) => {
     const id = req.params.id;
-    const { wallet } = req.body;
+    const { wallet,review } = req.body;
 
     try {
-        const updatedUser = await UserModal.findByIdAndUpdate({ _id: id }, { wallet: wallet });
+        const updatedUser = await UserModal.findByIdAndUpdate({ _id: id }, { wallet: wallet, review });
         if (updatedUser) {
             return res.json({ message: "Successfully updated", user: updatedUser });
         } else {

@@ -62,7 +62,7 @@ export default function Cart() {
   
             setLoading(true);
   
-            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${userInfo._id}`, { wallet: New_Wallet })
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${userInfo._id}`, { wallet: New_Wallet ,review:false})
               .then((result) => {
                 console.log("successfully updated wallet")
               }).catch(err => { alert("error") })

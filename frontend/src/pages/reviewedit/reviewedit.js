@@ -1,12 +1,18 @@
-import { useState,useParams } from "react"
+import { useState } from "react"
+import {useParams} from 'react-router-dom'
 import axios from "axios"
+
 export default function Reviewedit() {
 
     const [review,setReview] = useState("")
-    const id =useParams()
+    const {id} =useParams()
+    
     const handlereview =async(e) =>{
         e.preventDefault()
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}review/editreview/${id}`)
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}review/editreview/${id}`,{review})
+        .then((result)=>{
+            alert(result.data.message)
+        }).catch((err)=>{alert("error")})
     }
     return (
         <div className="update">

@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
         required:true,
         default:false,
     },
-    owner:{
+    review:{
         type:Boolean,
         required:true,
         default:false,
