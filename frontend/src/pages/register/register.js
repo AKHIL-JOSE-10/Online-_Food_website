@@ -23,34 +23,51 @@ export default function Register() {
 
 
   function handleregister(e) {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
     if (password !== cpassword) {
-      alert("passwords not matched")
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Passwords do not match",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      setLoading(false);
+      return;
     }
-    else {
-     
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}register/user/UserRegister`, { name, email, password })
-        .then((result) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Successfully Registered",
-            showConfirmButton: false,
-            timer: 2000
-          });
-          navigate('/Login')
-          setLoading(false)
-        })
-        .catch(err => { Swal.fire({
+  
+    // Check if the email ends with "@jecc.ac.in"
+    if (!email.toLowerCase().endsWith('@jecc.ac.in')) {
+        alert("please enter jecc mail id")
+      setLoading(false);
+      return
+      
+    }
+  
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}register/user/UserRegister`, { name, email, password })
+      .then((result) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully Registered",
+          showConfirmButton: false,
+          timer: 2000
+        });
+        navigate('/Login');
+      })
+      .catch(err => {
+        Swal.fire({
           position: "top-end",
           icon: "error",
-          title: "Couldn't Registered",
+          title: "Couldn't Register",
           showConfirmButton: false,
-          timer: 3000
+          timer: 2000
         });
-        setLoading(false) })
-    }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (
@@ -62,7 +79,7 @@ export default function Register() {
           <input required type="email" placeholder='email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input required type="password" placeholder='password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
           <input required type="password" placeholder='confirm password' className='form-control' value={cpassword} onChange={(e) => setCpassword(e.target.value)} /><br/>
-          <button className='btn btn-standard' disabled={loading} >
+          <button style={{borderRadius:"100px",backgroundColor:"#5f518f"}} className='btn btn-standard' disabled={loading} >
             {loading && <i className='fa fa-refresh fa-spin'></i>}
             {loading && <span>loading..</span>}
             {!loading && <span>Register</span>}

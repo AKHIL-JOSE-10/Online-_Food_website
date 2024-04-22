@@ -50,7 +50,7 @@ export default function Order() {
               <div className="order-creation-time">
                 <b>Order Placed at: {new Date(orderItem.createdAt).toLocaleString()}</b>
               </div>
-              <div className="order-item-name" style={{ color: 'blue' }}><b>subtotal :{orderItem.subtotal}</b></div>
+              <div className="order-item-name" style={{ color: 'blue' }}><b>subtotal :{orderItem.subtotal}</b> Rs</div>
             </div>
           ))}
         </div>

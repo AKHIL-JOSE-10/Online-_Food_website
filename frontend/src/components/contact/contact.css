@@ -12,24 +12,24 @@
 /* Wrapper */
 .contact-form {
     border-radius: 20px;
-    width: 45vw;
+    width: 25vw;
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
-    background-color: #fff;
+    background-color: #cee8ee;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border: 2px solid black;
 
   }
 
-  .contact-title {
+  .contact-title{
     text-align: center;
     font-size: 36px;
-    color: #f22a2a;
-    margin: 2.5rem 0;
+    color: #5f518f;
+    padding: 20px;
   }
 
   .form-control {

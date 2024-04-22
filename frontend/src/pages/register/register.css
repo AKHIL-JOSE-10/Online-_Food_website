@@ -1,94 +1,98 @@
+/* Styling for Register Container */
 .register-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?cs=srgb&dl=pexels-ella-olsson-1640773.jpg&fm=jpg');
-    background-size: cover; /* Ensures the image covers the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat;
-    position: relative !important; 
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?cs=srgb&dl=pexels-ella-olsson-1640773.jpg&fm=jpg');
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  position: relative !important; 
 }
 
 .Toastify {
   z-index: 9999 !important; /* Set a high z-index value */
 }
+
 /* Wrapper */
 .register-form {
-    border-radius: 20px;
-    width: 45vw;
-    margin-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border: 2px solid black;
+  border-radius: 20px;
+  width: 25vw;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  background-color: #cee8ee;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid black;
+}
 
-  }
+.register-title {
+  text-align: center;
+  font-size: 36px;
+  color: #5f518f;
+  padding: 20px;
+}
 
-  .register-title {
-    text-align: center;
-    font-size: 36px;
-    color: #f22a2a;
-    margin: 2.5rem 0;
-  }
-
+.form-control {
   .form-control {
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #333;
-    width: 100%;
-    padding: 0.25rem;
-    transition: 150ms all ease-in-out;
+    outline: none; /* Removes the default outline */
+    border: 2px solid #5f518f; /* Adds a solid border with a color */
+    border-radius: 8px; /* Adds border radius for rounded corners */
+    width: 100%; /* Sets the width to fill the container */
+    padding: 10px; /* Adds padding inside the input field */
+    font-size: 18px; /* Sets the font size */
+    transition: border-color 0.3s ease; /* Adds a smooth transition effect for the border color */
+  }
+}
+
+.form-control:focus {
+  border-bottom-color: #f22a2a; /* Change border color on focus */
+}
+
+.register-btn {
+  margin-top: 2.5rem;
+  outline: none;
+  border: none;
+  padding: 0.75rem 1.5rem; /* Increase padding for better button size */
+  background-color: #f22a2a;
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.register-btn:hover {
+  background-color: #5f518f; /* Change background color on hover */
+}
+
+.register-form > p {
+  text-align: center;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-form > p > a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #888;
+  margin-top: 0.25rem;
+}
+
+/* Media Queries for Mobile Screens */
+@media (max-width: 767px) {
+  .register-container {
+    padding: 10px; /* Add padding to the login container for smaller screens */
   }
 
-  .form-control:focus {
-    padding-left: 0.75rem;
+  .register-form {
+    width: 80vw; /* Adjust the width for smaller screens */
   }
-  
-  .register-btn {
-    margin-top: 2.5rem;
-    outline: none;
-    border: 1px solid transparent;
-    padding: 0.5rem 1.5rem;
-    background-color: #f22a2a;
-    color: #fff;
-    font-weight: 500;
-    font-size: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-
-  .register-btn:hover {
-    border-color: #f22a2a;
-    color: #f22a2a;
-    background-color: #fff;
-  }
-  
-  .register-form > p {
-    text-align: center;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .register-form > p > a {
-    text-decoration: none;
-    font-size: 17px;
-    color: #888;
-    margin-top: 0.25rem;
-  }
- /* Media Queries for Mobile Screens */
- @media (max-width: 767px) {
-    .register-container {
-      padding: 10px; /* Add padding to the login container for smaller screens */
-    }
-  
-    .register-form {
-      width: 80vw; /* Adjust the width for smaller screens */
-    }
-  }
+}

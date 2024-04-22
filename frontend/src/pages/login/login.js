@@ -58,8 +58,8 @@ export default function Login() {
         <h2 className="login-title">Login</h2>
         <form onSubmit={handlelogin}>
           <input required type="email" placeholder='email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input required type="password" placeholder='password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button className='btn btn-standard' disabled={loading} >
+          <input required type="password" placeholder='password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
+          <button style={{borderRadius:"100px",backgroundColor:"#5f518f"}} className='btn btn-standard' disabled={loading} >
             {loading && <i className='fa fa-refresh fa-spin'></i>}
             {loading && <span>loading..</span>}
             {!loading && <span>Login</span>}
