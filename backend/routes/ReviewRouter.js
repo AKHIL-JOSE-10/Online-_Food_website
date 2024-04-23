@@ -23,9 +23,9 @@ router.get('/rev/:id',async(req,res)=>{
 })
 
 router.post('/addreview/:id',async(req,res)=>{
-const {name,description} = req.body
+const {name,description,createdBy} = req.body
     try{
-        const review = await new ReviewModel({name,description})
+        const review = await new ReviewModel({name,description,createdBy})
         if(review){
             await review.save()
            

@@ -93,7 +93,7 @@ export default function Cart() {
   return (
     <div style={{ marginTop: '90px' }}>
       <div className="row justify-content-center">
-        <div className="col-md-6 mt-5 mb-5" style={{border:"1px solid black"}}>
+        <div className="col-md-6 mt-5 mb-5" style={{border:"1px solid black", backgroundColor: " #c7d7e4" ,borderRadius:"30px"}}>
           <h2 style={{ fontSize: "40px", color: "#333", fontFamily: "cursive", textAlign: "center", textShadow: "2px 2px 2px #ccc" }}>My Cart</h2>
           {cartItems.map((items) => (
             <div className="flex-container" key={items._id}>

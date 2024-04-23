@@ -7,6 +7,9 @@ const ReviewSchema = new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    createdBy:{
+        type:String
     }
 },{
     timestamps:true,

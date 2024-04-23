@@ -14,14 +14,17 @@ export const Review = () => {
     const [userInfos, setUserInfos] = useState({});
     const user = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     const [loading, setLoading] = useState(false)
+    const [bloading, setBloading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
+        setBloading(true)
         axios.get(`${process.env.REACT_APP_BACKEND_URL}onefood/getALLFoods/food/${id}`)
             .then((res) => {
                 setFoods(res.data);
                 setReviews(res.data.Review);
                 setLoading(false)
+                setBloading(false)
             })
             .catch((err) => {
                 console.log("Can't get food items to frontend", err);
@@ -41,12 +44,12 @@ export const Review = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}review/add/addreview/${id}`, { name: user.name, description: review });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}review/add/addreview/${id}`, { name: user.name, description: review, createdBy: user._id });
             alert(response.data.message);
             setReview("");
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}onefood/getALLFoods/food/${id}`);
             setReviews(res.data.Review);
-            
+
             // Update user.review to true
             await axios.put(`${process.env.REACT_APP_BACKEND_URL}UpdateUser/update/users/${user._id}`, { wallet: user.wallet, review: true });
         } catch (error) {
@@ -74,34 +77,45 @@ export const Review = () => {
     }, [reviews]);
 
     return (
-        <div style={{marginTop:"40px"}}>
+        <div style={{ marginTop: "40px" }}>
             {
-                loading ?    <div className="spinner-border m-5" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div> :
-              <div style={{ marginTop: "100px",paddingLeft:"30px",paddingRight:"30px" }}>
-              <h3 style={{ marginTop: "100px", marginBottom: "50px" }}>Reviews</h3>
-              {reviewDetails.length === 0 && <p>No reviews yet!</p>}
-              <div className="row">
-                  {reviewDetails.map((reviewDetail, index) => (
-                      <div key={index} className="col-md-3">
-                          <div style={{ borderRadius: "20px", border: "1px solid black", background: "lightgrey", paddingBottom: "15px" }}>
-                              <p><img src={userimage} alt="" style={{ width: "60px", height: "60px", borderRadius: "80px", marginRight: "20px" }} /><b>{reviewDetail.review?.name}</b></p>
-                              <p className="description" style={{color:"red"}}>Description: <b>{reviewDetail.review?.description}</b></p>
-                              <Link to={`/Reviewedit/${reviewDetail.review._id}`}>Edit</Link>
-                          </div>
-                      </div>
-                  ))}
-              </div>
-              {!user.isAdmin && !userInfos.review && (
-                  <div>
-                      <form onSubmit={handlereview}>
-                          <input required type="text" placeholder="write Review.." value={review} onChange={(e) => setReview(e.target.value)} />
-                          <button className="btn btn-standard" style={{ marginTop: "10px" }} type="submit">Submit</button>
-                      </form>
-                  </div>
-              )}
-          </div>
+                loading ? <div className="spinner-border m-5" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div> :
+                    <div style={{ marginTop: "100px", paddingLeft: "30px", paddingRight: "30px" }}>
+                        <h3 style={{ marginTop: "100px", marginBottom: "50px" }}>Reviews</h3>
+                        {reviewDetails.length === 0 && <p>No reviews yet!</p>}
+                        <div className="row">
+                            {reviewDetails.map((reviewDetail, index) => (
+                                <div key={index} className="col-md-3">
+                                    <div style={{ borderRadius: "20px", border: "1px solid black", background: "lightgrey", paddingBottom: "15px" }}>
+                                        <p><img src={userimage} alt="" style={{ width: "60px", height: "60px", borderRadius: "80px", marginRight: "20px" }} /><b>{reviewDetail.review?.name}</b></p>
+                                        <p className="description" style={{ color: "red" }}>Description: <b>{reviewDetail.review?.description}</b></p>
+                                        {reviewDetail.review && user._id === reviewDetail.review.createdBy && (
+                                            <Link to={`/Reviewedit/${reviewDetail.review._id}`}>Edit</Link>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {!user.isAdmin && !userInfos.review && (
+                            <div>
+                                <form onSubmit={handlereview}>
+                                    <input required type="text" placeholder="write Review.." value={review} onChange={(e) => setReview(e.target.value)} />
+                                    <button className="btn btn-standard" style={{ marginTop: "10px" }} type="submit" disabled={bloading}>
+                                        {bloading ? (
+                                            <>
+                                                <i className='fa fa-refresh fa-spin'></i>
+                                                <span>loading..</span>
+                                            </>
+                                        ) : (
+                                            <span>Submit</span>
+                                        )}
+                                    </button>
+                                </form>
+                            </div>
+                        )}
+                    </div>
             }
         </div>
     );
